@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIM SHIFT Mindset｜心とお金が同時にととのう、静かなシフト</title>
+<meta name="description" content="潜在意識・セルフイメージ・お金・自己価値。頑張ってきたあなたへ。心とお金が同時にととのう、静かなシフトの場所。">
+<meta property="og:title" content="KIM SHIFT Mindset｜心とお金が同時にととのう">
+<meta property="og:description" content="潜在意識・セルフイメージ・お金・自己価値。頑張ってきたあなたへ。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F8F5F0;--bg-warm:#F3EDE4;--bg-deep:#EDE7DC;--white:#FFF;
+  --text:#3A3530;--text-s:#6B6259;--text-l:#9A9088;
+  --gold:#C4A265;--gold-l:#DCC9A0;--gold-bg:rgba(196,162,101,0.06);
+  --green:#06C755;
+  --serif:'Noto Serif JP','Cormorant Garamond',serif;
+  --sans:'Noto Sans JP',sans-serif;
+  --display:'Cormorant Garamond',serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(1rem,4vw,3rem);height:56px;display:flex;align-items:center;justify-content:space-between;background:rgba(248,245,240,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(196,162,101,0.1);transition:transform 0.3s}
+.nav-brand{font-family:var(--display);font-weight:300;font-size:1.05rem;letter-spacing:0.2em;color:var(--gold)}
+.nav-links{display:flex;gap:clamp(1rem,3vw,2rem);list-style:none}
+.nav-links a{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.08em;color:var(--text-s);transition:color 0.2s;font-weight:300}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-cta{font-family:var(--sans);font-size:0.7rem;font-weight:500;color:var(--white);background:var(--green);padding:6px 16px;border-radius:30px;border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(6,199,85,0.2)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{width:20px;height:1.5px;background:var(--text-s);transition:all 0.3s}
+.mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(248,245,240,0.98);backdrop-filter:blur(20px);z-index:199;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--serif);font-size:1.1rem;color:var(--text);letter-spacing:0.1em;transition:color 0.2s}
+.mobile-menu a:hover{color:var(--gold)}
+
+@media(max-width:768px){
+  .nav-links,.nav-cta-wrap{display:none}
+  .hamburger{display:flex}
+}
+
+/* ═══ SECTIONS ═══ */
+.page{display:none;min-height:100dvh}
+.page.active{display:block}
+section{padding:clamp(3rem,8vw,6rem) clamp(1.5rem,5vw,4rem)}
+.section-inner{max-width:800px;margin:0 auto}
+.section-narrow{max-width:600px;margin:0 auto}
+.section-label{font-family:var(--sans);font-size:0.68rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:0.6rem;font-weight:400}
+.section-title{font-family:var(--serif);font-weight:400;font-size:clamp(1.2rem,3.5vw,1.7rem);line-height:1.8;margin-bottom:1rem}
+.gold-line{width:40px;height:1px;background:var(--gold-l);margin:0 auto 2rem}
+.gold-line-left{width:40px;height:1px;background:var(--gold-l);margin:0 0 2rem}
+.text-center{text-align:center}
+.body-text{font-family:var(--sans);font-size:clamp(0.82rem,2vw,0.9rem);color:var(--text-s);line-height:2;font-weight:300}
+
+/* ═══ REVEAL ANIMATION ═══ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1),transform 0.8s cubic-bezier(0.4,0,0.2,1)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}.reveal-d3{transition-delay:0.3s}.reveal-d4{transition-delay:0.4s}
+
+/* ═══ HOME: HERO ═══ */
+.hero{min-height:100dvh;display:flex;align-items:center;justify-content:center;text-align:center;padding-top:56px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 20% 20%,rgba(196,162,101,0.06),transparent),radial-gradient(ellipse 50% 60% at 80% 80%,rgba(196,162,101,0.04),transparent);pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:640px;padding:0 1.5rem}
+.hero-badge{display:inline-block;font-family:var(--sans);font-size:0.68rem;letter-spacing:0.15em;color:var(--gold);border:1px solid var(--gold-l);border-radius:40px;padding:0.35rem 1.2rem;margin-bottom:2.5rem;animation:fadeDown 0.8s ease-out}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(1.6rem,5vw,2.4rem);line-height:2;color:var(--text);margin-bottom:1.5rem;animation:fadeUp 0.8s ease-out 0.15s both}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-sub{font-family:var(--sans);font-weight:300;font-size:clamp(0.82rem,2vw,0.92rem);color:var(--text-s);line-height:2;margin-bottom:2.5rem;animation:fadeUp 0.8s ease-out 0.3s both}
+.hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.8s ease-out 0.45s both}
+
+/* ═══ BUTTONS ═══ */
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:50px;border:none;cursor:pointer;font-family:var(--sans);font-weight:500;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);text-decoration:none}
+.btn-line{background:var(--green);color:#fff;padding:12px 28px;font-size:0.88rem;box-shadow:0 4px 16px rgba(6,199,85,0.18)}
+.btn-line:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(6,199,85,0.28)}
+.btn-line svg{width:20px;height:20px}
+.btn-ghost{background:transparent;border:1px solid var(--gold-l);color:var(--text-s);padding:11px 24px;font-size:0.82rem;font-weight:300}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-gold{background:var(--gold);color:#fff;padding:12px 28px;font-size:0.88rem;box-shadow:0 4px 16px rgba(196,162,101,0.15)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,162,101,0.25)}
+.note{font-family:var(--sans);font-size:0.68rem;color:var(--text-l);font-weight:300;margin-top:10px}
+
+/* ═══ HOME: KEYWORDS ═══ */
+.keywords{display:flex;justify-content:center;gap:clamp(1rem,4vw,2.5rem);flex-wrap:wrap;padding:2rem 0}
+.keyword{font-family:var(--display);font-size:clamp(0.9rem,2.5vw,1.15rem);font-weight:300;color:var(--gold);letter-spacing:0.1em;font-style:italic}
+
+/* ═══ HOME: CONCEPT ═══ */
+.concept-section{background:var(--bg-warm)}
+.concept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:2rem}
+.concept-card{padding:1.5rem;border-radius:12px;background:var(--white);border:0.5px solid rgba(196,162,101,0.1)}
+.concept-icon{font-size:1.4rem;margin-bottom:0.8rem}
+.concept-card h3{font-family:var(--serif);font-size:0.95rem;font-weight:400;margin-bottom:0.5rem}
+.concept-card p{font-family:var(--sans);font-size:0.78rem;color:var(--text-s);line-height:1.8;font-weight:300}
+
+/* ═══ HOME: SOCIAL PROOF ═══ */
+.voices-grid{display:grid;gap:1rem;margin-top:2rem}
+.voice{background:var(--white);border-radius:12px;padding:1.5rem;border:0.5px solid rgba(196,162,101,0.08)}
+.voice p{font-family:var(--sans);font-size:0.82rem;color:var(--text);line-height:1.9;font-weight:300;font-style:italic;margin-bottom:0.6rem}
+.voice-attr{font-family:var(--sans);font-size:0.7rem;color:var(--text-l);display:flex;align-items:center;gap:6px}
+.voice-dot{width:5px;height:5px;border-radius:50%;background:var(--gold-l)}
+
+/* ═══ HOME: DIAGNOSTIC BANNER ═══ */
+.diag-banner{background:linear-gradient(135deg,#F5EFE2,#EDE7DC);border-radius:16px;padding:2.5rem 2rem;text-align:center;margin-top:2rem;border:1px solid rgba(196,162,101,0.12)}
+.diag-banner h3{font-family:var(--serif);font-size:1.1rem;font-weight:400;margin-bottom:0.5rem}
+.diag-banner p{font-family:var(--sans);font-size:0.8rem;color:var(--text-s);line-height:1.8;font-weight:300;margin-bottom:1.5rem}
+
+/* ═══ HOME: FINAL CTA ═══ */
+.final-cta{text-align:center;padding-bottom:clamp(4rem,10vw,7rem)}
+
+/* ═══ ABOUT ═══ */
+.about-intro{font-family:var(--serif);font-size:clamp(1.1rem,3vw,1.4rem);font-weight:300;line-height:2.2;color:var(--text);margin-bottom:2rem}
+.about-body{margin-bottom:2.5rem}
+.about-values{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem}
+.value-card{text-align:center;padding:1.5rem 1rem}
+.value-num{font-family:var(--display);font-size:1.8rem;font-weight:300;color:var(--gold-l);margin-bottom:0.5rem}
+.value-card h4{font-family:var(--serif);font-size:0.9rem;font-weight:400;margin-bottom:0.4rem}
+.value-card p{font-family:var(--sans);font-size:0.75rem;color:var(--text-s);line-height:1.7;font-weight:300}
+
+/* ═══ VIDEOS ═══ */
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.video-card{background:var(--white);border-radius:12px;overflow:hidden;border:0.5px solid rgba(196,162,101,0.08);transition:transform 0.3s,box-shadow 0.3s}
+.video-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.06)}
+.video-thumb{position:relative;padding-top:56.25%;background:var(--bg-deep)}
+.video-thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.video-info{padding:1rem 1.2rem}
+.video-info h3{font-family:var(--serif);font-size:0.9rem;font-weight:400;line-height:1.6;margin-bottom:0.3rem}
+.video-info p{font-family:var(--sans);font-size:0.72rem;color:var(--text-l);font-weight:300}
+.video-cta{text-align:center;margin-top:2rem}
+
+/* ═══ JOURNAL ═══ */
+.journal-grid{display:grid;gap:1.5rem;margin-top:2rem}
+.journal-card{display:flex;gap:1.2rem;background:var(--white);border-radius:12px;padding:1.5rem;border:0.5px solid rgba(196,162,101,0.08);transition:transform 0.2s}
+.journal-card:hover{transform:translateX(4px)}
+.journal-num{font-family:var(--display);font-size:2rem;font-weight:300;color:var(--gold-l);line-height:1;flex-shrink:0;width:36px}
+.journal-card h3{font-family:var(--serif);font-size:0.92rem;font-weight:400;margin-bottom:0.4rem;line-height:1.5}
+.journal-card p{font-family:var(--sans);font-size:0.78rem;color:var(--text-s);line-height:1.8;font-weight:300}
+.journal-tag{display:inline-block;font-family:var(--sans);font-size:0.65rem;color:var(--gold);background:var(--gold-bg);padding:2px 10px;border-radius:20px;margin-top:0.5rem}
+
+/* ═══ CONTACT ═══ */
+.contact-methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem}
+.contact-card{background:var(--white);border-radius:12px;padding:2rem 1.5rem;text-align:center;border:0.5px solid rgba(196,162,101,0.08);transition:transform 0.2s}
+.contact-card:hover{transform:translateY(-3px)}
+.contact-icon{font-size:1.5rem;margin-bottom:0.8rem}
+.contact-card h3{font-family:var(--serif);font-size:0.9rem;font-weight:400;margin-bottom:0.3rem}
+.contact-card p{font-family:var(--sans);font-size:0.75rem;color:var(--text-s);line-height:1.6;font-weight:300;margin-bottom:1rem}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--bg-warm);padding:3rem clamp(1.5rem,5vw,4rem) 2rem;text-align:center;border-top:1px solid rgba(196,162,101,0.08)}
+.footer-brand{font-family:var(--display);font-size:1rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.3rem}
+.footer-sub{font-family:var(--sans);font-size:0.65rem;color:var(--text-l);letter-spacing:0.1em;font-weight:300;margin-bottom:1.5rem}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.footer-links a{font-family:var(--sans);font-size:0.72rem;color:var(--text-s);transition:color 0.2s;font-weight:300}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-family:var(--sans);font-size:0.6rem;color:var(--text-l);font-weight:300}
+
+/* ═══ FLOATING CTA ═══ */
+.float-cta{position:fixed;bottom:0;left:0;right:0;z-index:190;background:rgba(248,245,240,0.95);backdrop-filter:blur(10px);border-top:1px solid rgba(196,162,101,0.1);padding:10px 1rem;display:flex;align-items:center;justify-content:center;gap:12px;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
+.float-cta.show{transform:translateY(0)}
+.float-cta-text{font-family:var(--sans);font-size:0.72rem;color:var(--text-s);font-weight:300;line-height:1.3}
+.float-cta-text strong{display:block;font-weight:500;color:var(--text);font-size:0.78rem}
+.float-cta .btn-line{font-size:0.78rem;padding:8px 18px}
+
+/* ═══ LINE SVG ═══ */
+.line-svg{width:20px;height:20px;flex-shrink:0}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:600px){
+  .journal-card{flex-direction:column;gap:0.6rem}
+  .journal-num{width:auto}
+  .hero h1{line-height:1.85}
+  .concept-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+  <a href="#home" class="nav-brand" onclick="go('home')">KIM SHIFT</a>
+  <ul class="nav-links">
+    <li><a href="#home" onclick="go('home')" id="nav-home">Home</a></li>
+    <li><a href="#about" onclick="go('about')" id="nav-about">About</a></li>
+    <li><a href="#videos" onclick="go('videos')" id="nav-videos">Videos</a></li>
+    <li><a href="#journal" onclick="go('journal')" id="nav-journal">Journal</a></li>
+    <li><a href="#contact" onclick="go('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <span class="nav-cta-wrap">
+    <a class="nav-cta" href="https://lin.ee/pRkH8A7" target="_blank" rel="noopener">LINE登録</a>
+  </span>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#home" onclick="go('home');closeMenu()">Home</a>
+  <a href="#about" onclick="go('about');closeMenu()">About</a>
+  <a href="#videos" onclick="go('videos');closeMenu()">Videos</a>
+  <a href="#journal" onclick="go('journal');closeMenu()">Journal</a>
+  <a href="#contact" onclick="go('contact');closeMenu()">Contact</a>
+  <a href="https://lin.ee/pRkH8A7" target="_blank" style="color:var(--green)">LINE登録</a>
+</div>
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║           HOME                    ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="page active" id="page-home">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">LINE限定コンテンツ配信中</div>
+      <h1>
+        頑張ってきたあなたへ。<br>
+        心とお金が同時にととのう<em>、</em><br>
+        <em>静かなシフト</em>を始めませんか？
+      </h1>
+      <p class="hero-sub">
+        潜在意識・セルフイメージ・お金・自己価値──<br>
+        「変わりたいのに変われない」を<br>
+        やさしくほどく場所です。
+      </p>
+      <div class="hero-cta-row">
+        <a class="btn btn-line" href="https://lin.ee/pRkH8A7" target="_blank">
+          <svg class="line-svg" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          無料で受け取る
+        </a>
+        <a class="btn btn-ghost" href="#about" onclick="go('about')">KIM SHIFTとは →</a>
+      </div>
+      <p class="note">登録は無料です。いつでも解除できます。</p>
+    </div>
+  </section>
+
+  <!-- Keywords -->
+  <div class="keywords reveal">
+    <span class="keyword">Subconscious</span>
+    <span class="keyword">Self-image</span>
+    <span class="keyword">Money</span>
+    <span class="keyword">Self-worth</span>
+  </div>
+
+  <!-- Concept -->
+  <section class="concept-section">
+    <div class="section-inner text-center">
+      <p class="section-label reveal">Concept</p>
+      <h2 class="section-title reveal reveal-d1">
+        現実を変えるのは、<br>行動ではなく<em style="color:var(--gold)">「自分の扱い方」</em>
+      </h2>
+      <div class="gold-line reveal reveal-d2"></div>
+      <p class="body-text reveal reveal-d2" style="max-width:520px;margin:0 auto 2rem">
+        KIM SHIFT Mindsetは、潜在意識とセルフイメージの仕組みを<br>
+        心理学と習慣科学のロジックで解説し、<br>
+        現実をやさしく動かしていく場所です。
+      </p>
+      <div class="concept-grid">
+        <div class="concept-card reveal reveal-d1">
+          <div class="concept-icon">✦</div>
+          <h3>スピリチュアルに偏らない</h3>
+          <p>「なんとなく信じる」ではなく「納得して動ける」。心理学ベースのロジックでお伝えします。</p>
+        </div>
+        <div class="concept-card reveal reveal-d2">
+          <div class="concept-icon">✦</div>
+          <h3>小さなワークで静かに変わる</h3>
+          <p>ノート1冊だけ。忙しい毎日でも無理なく続けられる小さなワークで、セルフイメージを静かに書き換えていきます。</p>
+        </div>
+        <div class="concept-card reveal reveal-d3">
+          <div class="concept-icon">✦</div>
+          <h3>こっそり、自分のペースで</h3>
+          <p>LINEやYouTubeだから、あなただけの空間で安心して受け取れます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagnostic Banner -->
+  <section>
+    <div class="section-inner">
+      <div class="diag-banner reveal">
+        <p class="section-label">Free Diagnostic</p>
+        <h3>あなたのセルフイメージ、チェックしてみませんか？</h3>
+        <p>10の質問に答えるだけ。所要時間たった1分。<br>あなたの「自分の扱い方」のタイプがわかります。</p>
+        <a class="btn btn-gold" href="diagnostic.html" target="_blank">無料診断をやってみる</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section>
+    <div class="section-inner text-center">
+      <p class="section-label reveal">Voices</p>
+      <h2 class="section-title reveal reveal-d1">静かに変わり始めた人たちの声</h2>
+      <div class="gold-line reveal reveal-d2"></div>
+      <div class="voices-grid">
+        <div class="voice reveal">
+          <p>「ジャーナリングを始めて2週間。自分を雑に扱う癖に気づけたことが一番大きかったです。朝の気持ちが少し軽くなりました。」</p>
+          <div class="voice-attr"><span class="voice-dot"></span>30代・会社員</div>
+        </div>
+        <div class="voice reveal reveal-d1">
+          <p>「お金のブロックの話がとても腑に落ちました。節約＝頑張りだと思い込んでいた自分に気づいて、少し楽になれました。」</p>
+          <div class="voice-attr"><span class="voice-dot"></span>40代・パート勤務</div>
+        </div>
+        <div class="voice reveal reveal-d2">
+          <p>「LINEの配信だけでこんなに変わるとは思いませんでした。誰にも言えなかった"報われない感"を、やっと整理できた気がします。」</p>
+          <div class="voice-attr"><span class="voice-dot"></span>30代・フリーランス</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="section-narrow reveal">
+      <p class="section-label">Start Your Shift</p>
+      <h2 class="section-title" style="margin-bottom:0.5rem">次の一歩を、<br>こっそり受け取りませんか？</h2>
+      <div class="gold-line"></div>
+      <p class="body-text" style="margin-bottom:2rem">
+        公式LINEに登録すると、<br>
+        セルフイメージ診断シートを<br>
+        今すぐ無料で受け取れます。
+      </p>
+      <a class="btn btn-line" href="https://lin.ee/pRkH8A7" target="_blank">
+        <svg class="line-svg" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        セルフイメージ診断を無料で受け取る
+      </a>
+      <p class="note">登録は30秒で完了します</p>
+    </div>
+  </section>
+</div>
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║           ABOUT                   ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="page" id="page-about">
+  <section style="padding-top:calc(56px + clamp(3rem,8vw,6rem))">
+    <div class="section-narrow">
+      <p class="section-label reveal">About</p>
+      <h2 class="section-title reveal reveal-d1">KIM SHIFT Mindset について</h2>
+      <div class="gold-line-left reveal reveal-d2"></div>
+
+      <p class="about-intro reveal">
+        「頑張っているのに、なぜか報われない」<br>
+        そう感じているすべての方へ。
+      </p>
+
+      <div class="about-body reveal">
+        <p class="body-text">
+          KIM SHIFT Mindsetは、潜在意識・セルフイメージ・お金・自己価値をテーマにした発信チャンネルです。
+        </p>
+        <br>
+        <p class="body-text">
+          スピリチュアルに偏らず、心理学と習慣科学をベースにした「納得できるロジック」で、
+          なぜ現実が変わらないのかを解き明かし、毎日3分の小さなワークで静かにシフトしていく方法をお伝えしています。
+        </p>
+        <br>
+        <p class="body-text">
+          YouTube・LINEを通じて、あなたが「自分を大切に扱う」習慣を取り戻すお手伝いをしています。
+          劇的な変化ではなく、朝の気持ちがほんの少し軽くなるような、静かだけど確かな変化を大切にしています。
+        </p>
+      </div>
+
+      <p class="section-label reveal">Values</p>
+      <h2 class="section-title reveal" style="font-size:1.1rem">大切にしていること</h2>
+      <div class="gold-line-left reveal"></div>
+
+      <div class="about-values">
+        <div class="value-card reveal">
+          <div class="value-num">01</div>
+          <h4>納得してから動く</h4>
+          <p>「信じなさい」とは言いません。仕組みを理解して、自分で選べること。</p>
+        </div>
+        <div class="value-card reveal reveal-d1">
+          <div class="value-num">02</div>
+          <h4>小さく、静かに</h4>
+          <p>劇的な変化より、3分の習慣。続けられることだけに絞ります。</p>
+        </div>
+        <div class="value-card reveal reveal-d2">
+          <div class="value-num">03</div>
+          <h4>あなたのペースで</h4>
+          <p>誰かに見せる必要はありません。こっそり、自分だけの空間で。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="text-center" style="padding-top:0">
+    <div class="section-narrow reveal">
+      <a class="btn btn-line" href="https://lin.ee/pRkH8A7" target="_blank">
+        <svg class="line-svg" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        公式LINEで受け取る
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║           VIDEOS                  ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="page" id="page-videos">
+  <section style="padding-top:calc(56px + clamp(3rem,8vw,6rem))">
+    <div class="section-inner">
+      <p class="section-label reveal">Videos</p>
+      <h2 class="section-title reveal reveal-d1">YouTube動画</h2>
+      <div class="gold-line-left reveal reveal-d2"></div>
+      <p class="body-text reveal" style="margin-bottom:1rem">
+        潜在意識・セルフイメージ・お金のブロックなど、<br>
+        心とお金が同時にととのうヒントを動画でお届けしています。
+      </p>
+
+      <div class="video-grid">
+        <div class="video-card reveal">
+          <div class="video-thumb">
+            <iframe src="https://www.youtube.com/embed/?listType=user_uploads&list=UCJhfg7-DRiRG7evcfoNJ5EQ" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video-info">
+            <h3>最新動画</h3>
+            <p>チャンネルの最新コンテンツ</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-cta reveal" style="margin-top:2rem">
+        <p class="body-text" style="margin-bottom:1rem">すべての動画はYouTubeチャンネルでご覧いただけます。</p>
+        <a class="btn btn-ghost" href="https://www.youtube.com/channel/UCJhfg7-DRiRG7evcfoNJ5EQ" target="_blank" rel="noopener">
+          YouTubeチャンネルを見る →
+        </a>
+      </div>
+
+      <div class="diag-banner reveal" style="margin-top:3rem">
+        <p class="section-label">動画を見た後に</p>
+        <h3>あなたのセルフイメージ、チェックしてみませんか？</h3>
+        <p>10の質問であなたのタイプがわかる無料診断</p>
+        <a class="btn btn-gold" href="diagnostic.html" target="_blank">無料診断をやってみる</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║           JOURNAL                 ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="page" id="page-journal">
+  <section style="padding-top:calc(56px + clamp(3rem,8vw,6rem))">
+    <div class="section-inner">
+      <p class="section-label reveal">Journal</p>
+      <h2 class="section-title reveal reveal-d1">静かなシフトの記録</h2>
+      <div class="gold-line-left reveal reveal-d2"></div>
+
+      <div class="journal-grid">
+        <div class="journal-card reveal">
+          <div class="journal-num">01</div>
+          <div>
+            <h3>「私なんて」が口癖だった頃の自分へ</h3>
+            <p>セルフイメージが低いと、無意識に自分を後回しにする習慣が染みつきます。
+              まず「気づく」ことから始める、小さなシフトの体験記。</p>
+            <span class="journal-tag">セルフイメージ</span>
+          </div>
+        </div>
+        <div class="journal-card reveal reveal-d1">
+          <div class="journal-num">02</div>
+          <div>
+            <h3>お金のブロックの正体は「罪悪感」だった</h3>
+            <p>「お金を使う＝悪いこと」という潜在意識のパターン。
+              YouTubeでは語りきれなかった、罪悪感の外し方を解説します。</p>
+            <span class="journal-tag">お金のブロック</span>
+          </div>
+        </div>
+        <div class="journal-card reveal reveal-d2">
+          <div class="journal-num">03</div>
+          <div>
+            <h3>鏡の法則──なぜ「見る」ことが潜在意識に届くのか</h3>
+            <p>認知科学から見た鏡の法則の仕組み。
+              毎朝30秒のミラーワークが現実を動かす理由を紐解きます。</p>
+            <span class="journal-tag">潜在意識</span>
+          </div>
+        </div>
+        <div class="journal-card reveal reveal-d3">
+          <div class="journal-num">04</div>
+          <div>
+            <h3>読者の声：「受け取れるようになった」30代会社員の話</h3>
+            <p>「褒められたら否定する」癖に気づいてから、
+              小さな変化が積み重なり始めた体験談。</p>
+            <span class="journal-tag">読者の声</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center reveal" style="margin-top:2.5rem">
+        <p class="body-text" style="margin-bottom:1.5rem">
+          Journalの更新情報は公式LINEでお届けしています。
+        </p>
+        <a class="btn btn-line" href="https://lin.ee/pRkH8A7" target="_blank">
+          <svg class="line-svg" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          LINEでJournal更新を受け取る
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║           CONTACT                 ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="page" id="page-contact">
+  <section style="padding-top:calc(56px + clamp(3rem,8vw,6rem))">
+    <div class="section-narrow text-center">
+      <p class="section-label reveal">Contact</p>
+      <h2 class="section-title reveal reveal-d1">お問い合わせ</h2>
+      <div class="gold-line reveal reveal-d2"></div>
+      <p class="body-text reveal" style="margin-bottom:2rem">
+        ご質問・コラボのご相談・取材のご依頼など、<br>
+        お気軽にご連絡ください。
+      </p>
+
+      <div class="contact-methods">
+        <div class="contact-card reveal">
+          <div class="contact-icon">💬</div>
+          <h3>LINE</h3>
+          <p>一番早くお返事できます。<br>お気軽にメッセージください。</p>
+          <a class="btn btn-line" href="https://lin.ee/pRkH8A7" target="_blank" style="font-size:0.8rem;padding:10px 20px">
+            LINEで問い合わせ
+          </a>
+        </div>
+        <div class="contact-card reveal reveal-d1">
+          <div class="contact-icon">🎬</div>
+          <h3>YouTube</h3>
+          <p>動画のコメント欄でも<br>ご質問を受け付けています。</p>
+          <a class="btn btn-ghost" href="https://www.youtube.com/channel/UCJhfg7-DRiRG7evcfoNJ5EQ" target="_blank" style="font-size:0.8rem;padding:10px 20px">
+            チャンネルを見る
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-brand">KIM SHIFT</div>
+  <div class="footer-sub">Mindset</div>
+  <div class="footer-links">
+    <a href="#home" onclick="go('home')">Home</a>
+    <a href="#about" onclick="go('about')">About</a>
+    <a href="#videos" onclick="go('videos')">Videos</a>
+    <a href="#journal" onclick="go('journal')">Journal</a>
+    <a href="#contact" onclick="go('contact')">Contact</a>
+    <a href="https://www.youtube.com/channel/UCJhfg7-DRiRG7evcfoNJ5EQ" target="_blank">YouTube</a>
+  </div>
+  <div class="footer-copy">© 2026 KIM SHIFT Mindset. All rights reserved.</div>
+</footer>
+
+<!-- ═══ FLOATING CTA ═══ -->
+<div class="float-cta" id="float-cta">
+  <div class="float-cta-text">
+    <strong>無料特典あり</strong>
+    セルフイメージ診断シートを受け取る
+  </div>
+  <a class="btn btn-line" href="https://lin.ee/pRkH8A7" target="_blank">
+    <svg class="line-svg" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    LINE登録
+  </a>
+</div>
+
+<script>
+// ── SPA Router ──
+function go(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navLink = document.getElementById('nav-' + page);
+  if (navLink) navLink.classList.add('active');
+  window.scrollTo({ top: 0 });
+  history.pushState(null, '', '#' + page);
+  setTimeout(initReveals, 100);
+}
+
+// Hash routing
+function handleHash() {
+  const hash = location.hash.replace('#', '') || 'home';
+  go(hash);
+}
+window.addEventListener('hashchange', handleHash);
+window.addEventListener('DOMContentLoaded', handleHash);
+
+// ── Mobile menu ──
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+// ── Floating CTA ──
+const floatCta = document.getElementById('float-cta');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const rect = hero.getBoundingClientRect();
+    floatCta.classList.toggle('show', rect.bottom < 0);
+  } else {
+    floatCta.classList.toggle('show', window.scrollY > 300);
+  }
+});
+
+// ── Scroll reveal ──
+function initReveals() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal:not(.vis)').forEach(el => obs.observe(el));
+}
+window.addEventListener('DOMContentLoaded', () => setTimeout(initReveals, 200));
+</script>
+
+</body>
+</html>

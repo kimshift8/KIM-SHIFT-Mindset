@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIM SHIFT Mindset｜公式LINE登録</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #f8f5f0;
+    --bg-warm: #f3ede4;
+    --text-main: #3a3530;
+    --text-soft: #6b6259;
+    --accent: #06C755;
+    --accent-hover: #05b34c;
+    --gold: #c4a265;
+    --gold-light: #dcc9a0;
+    --white: #ffffff;
+  }
+
+  html, body {
+    height: 100%;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    overflow-x: hidden;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    cursor: pointer;
+  }
+
+  /* ── Background texture ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(196,162,101,0.08), transparent),
+      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(196,162,101,0.06), transparent);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrapper {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  /* ── Logo area ── */
+  .brand {
+    margin-bottom: 1rem;
+    animation: fadeDown 1s ease-out;
+  }
+
+  .brand-name {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .brand-sub {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-light);
+    margin-top: 0.2rem;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--gold-light);
+    margin: 1.2rem auto 1.8rem;
+    animation: scaleIn 1.2s ease-out 0.3s both;
+  }
+
+  /* ── Main copy ── */
+  .hero-copy {
+    animation: fadeUp 1s ease-out 0.4s both;
+  }
+
+  .hero-copy h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 400;
+    font-size: clamp(1.35rem, 4.5vw, 2rem);
+    line-height: 1.9;
+    color: var(--text-main);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-copy h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-copy p {
+    font-weight: 300;
+    font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+    line-height: 2;
+    color: var(--text-soft);
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* ── Benefits ── */
+  .benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 2rem auto 2.2rem;
+    max-width: 340px;
+    animation: fadeUp 1s ease-out 0.7s both;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    font-weight: 300;
+    text-align: left;
+  }
+
+  .benefit-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(196,162,101,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--gold);
+  }
+
+  /* ── CTA Button ── */
+  .cta-area {
+    animation: fadeUp 1s ease-out 1s both;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--accent);
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: 500;
+    font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+    padding: 1rem 2.8rem;
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(6,199,85,0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .cta-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(6,199,85,0.35);
+  }
+
+  .cta-button:hover::before {
+    opacity: 1;
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+  }
+
+  .line-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cta-note {
+    font-size: 0.72rem;
+    color: var(--text-soft);
+    margin-top: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.65rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    font-weight: 300;
+  }
+
+  /* ── Floating particles ── */
+  .particle {
+    position: fixed;
+    border-radius: 50%;
+    background: var(--gold-light);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .particle:nth-child(1) { width: 6px; height: 6px; top: 15%; left: 10%; animation: float 8s ease-in-out infinite; }
+  .particle:nth-child(2) { width: 4px; height: 4px; top: 30%; right: 15%; animation: float 10s ease-in-out infinite 2s; }
+  .particle:nth-child(3) { width: 8px; height: 8px; bottom: 25%; left: 20%; animation: float 12s ease-in-out infinite 4s; }
+  .particle:nth-child(4) { width: 3px; height: 3px; top: 60%; right: 8%; animation: float 9s ease-in-out infinite 1s; }
+  .particle:nth-child(5) { width: 5px; height: 5px; bottom: 15%; right: 25%; animation: float 11s ease-in-out infinite 3s; }
+
+  /* ── Pulse ring on CTA ── */
+  .pulse-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 60px;
+    border: 2px solid var(--accent);
+    animation: pulse 2.5s ease-out infinite 2s;
+    pointer-events: none;
+  }
+
+  .cta-button-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    33% { transform: translateY(-12px) translateX(6px); }
+    66% { transform: translateY(8px) translateX(-4px); }
+  }
+
+  @keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1.35); opacity: 0; }
+  }
+
+  /* ── Tap anywhere hint (mobile) ── */
+  .tap-hint {
+    position: fixed;
+    bottom: 4.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: var(--gold-light);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    animation: fadeUp 1s ease-out 2s both;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .tap-hint::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--gold-light);
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 6px;
+    animation: pulse 2s ease-out infinite;
+  }
+</style>
+</head>
+<body onclick="window.location.href='https://lin.ee/pRkH8A7'">
+
+  <!-- Floating particles -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
+  <div class="page-wrapper">
+
+    <!-- Brand -->
+    <div class="brand">
+      <div class="brand-name">KIM SHIFT</div>
+      <div class="brand-sub">Mindset</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Hero copy -->
+    <div class="hero-copy">
+      <h1>
+        心とお金が<br>
+        同時にととのう<em>。</em><br>
+        <em>静かなシフト</em>を<br>
+        受け取りませんか？
+      </h1>
+      <p>
+        潜在意識・セルフイメージ・お金・自己価値──<br>
+        現実をやさしく動かすヒントを<br>
+        公式LINEからお届けします。
+      </p>
+    </div>
+
+    <!-- Benefits -->
+    <div class="benefits">
+      <div class="benefit-item">
+        <div class="benefit-icon">✦</div>
+        <span>限定コンテンツを配信</span>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">✦</div>
+        <span>動画の続編・非公開コンテンツ</span>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">✦</div>
+        <span>セルフイメージを整える3分習慣</span>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-area">
+      <div class="cta-button-wrapper">
+        <a class="cta-button" href="https://lin.ee/pRkH8A7" onclick="event.stopPropagation();">
+          <svg class="line-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+          公式LINEに登録する
+        </a>
+        <div class="pulse-ring"></div>
+      </div>
+      <p class="cta-note">登録は無料です。いつでも解除できます。</p>
+    </div>
+
+  </div>
+
+  <div class="tap-hint">どこをタップしてもLINE登録へ</div>
+
+  <footer class="footer">
+    © 2026 KIM SHIFT Mindset
+  </footer>
+
+</body>
+</html>

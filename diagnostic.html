@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>セルフイメージ診断｜KIM SHIFT Mindset</title>
+<meta name="description" content="あなたの「自分の扱い方」を知る10の質問。心とお金が同時にととのう、静かなシフトを始めませんか？">
+<meta property="og:title" content="セルフイメージ診断｜KIM SHIFT Mindset">
+<meta property="og:description" content="10の質問であなたのセルフイメージのタイプがわかります。所要時間たった1分。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #F8F5F0; --bg-warm: #F3EDE4; --white: #FFFFFF;
+    --text: #3A3530; --text-soft: #6B6259; --text-light: #9A9088;
+    --gold: #C4A265; --gold-light: #DCC9A0; --gold-bg: #EDE7DC;
+    --green: #06C755; --teal: #1D9E75; --coral: #D85A30;
+    --serif: 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+  }
+  html, body { height: 100%; background: var(--bg); overflow-x: hidden; }
+  body { font-family: var(--serif); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+  /* ── Layout ── */
+  .app { min-height: 100dvh; display: flex; justify-content: center; }
+  .screen {
+    width: 100%; max-width: 480px; padding: 48px 24px 40px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+  .screen.visible { opacity: 1; transform: translateY(0); }
+  .hidden { display: none !important; }
+
+  /* ── Shared ── */
+  .dots { display: flex; gap: 6px; margin-bottom: 20px; }
+  .dots span { width: 4px; height: 4px; border-radius: 50%; background: var(--gold-light); }
+  .brand { font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--gold); font-weight: 300; }
+  .brand-sub { font-size: 0.7rem; color: var(--gold-light); font-weight: 300; letter-spacing: 0.15em; margin-top: 2px; }
+  .gold-line { width: 40px; height: 1px; background: var(--gold-light); margin: 16px 0; }
+  .note { font-family: var(--sans); font-size: 0.7rem; color: var(--text-light); font-weight: 300; margin-top: 12px; }
+
+  /* ── INTRO ── */
+  .intro-title { font-size: clamp(1.5rem, 5vw, 1.9rem); font-weight: 400; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+  .intro-sub { font-size: 0.85rem; color: var(--text-soft); font-weight: 300; line-height: 1.6; }
+  .intro-accent { font-size: 1.1rem; color: var(--gold); margin-top: 4px; }
+  .desc-box {
+    background: var(--bg-warm); border-radius: 12px; padding: 20px 24px;
+    margin: 28px 0; border: 0.5px solid #E0D8CC; max-width: 400px;
+  }
+  .desc-box p { font-family: var(--sans); font-size: 0.82rem; color: var(--text-soft); line-height: 1.9; font-weight: 300; }
+  .desc-box p + p { margin-top: 12px; }
+  .start-btn {
+    background: var(--gold); color: #fff; border: none; border-radius: 50px;
+    padding: 14px 48px; font-size: 0.95rem; font-family: var(--sans); font-weight: 500;
+    cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 4px 16px rgba(196,162,101,0.15); margin-top: 8px;
+  }
+  .start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,162,101,0.3); }
+  .start-btn:active { transform: translateY(0); }
+
+  /* ── QUESTION ── */
+  .progress-wrap { width: 100%; max-width: 360px; margin-bottom: 32px; }
+  .progress-track { width: 100%; height: 3px; background: var(--gold-bg); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold-light), var(--gold)); border-radius: 2px; transition: width 0.4s ease; }
+  .progress-text { font-family: var(--sans); font-size: 0.7rem; color: var(--text-light); font-weight: 300; margin-top: 8px; }
+  .q-num { width: 48px; height: 48px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+  .q-num span { color: #fff; font-size: 1.1rem; font-weight: 400; }
+  .q-text { font-size: clamp(1rem, 3.5vw, 1.15rem); font-weight: 400; color: var(--text); line-height: 1.8; margin-bottom: 32px; max-width: 360px; }
+  .answer-row { display: flex; gap: 16px; width: 100%; max-width: 320px; }
+  .answer-btn {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 20px 16px; border-radius: 14px; border: 1.5px solid #E0D8CC;
+    background: #fff; cursor: pointer; font-family: var(--sans); font-size: 0.9rem;
+    color: var(--text); font-weight: 400; transition: all 0.2s ease; gap: 4px;
+  }
+  .answer-btn:hover { border-color: var(--gold); }
+  .answer-btn .icon { font-size: 1.4rem; }
+  .answer-btn.yes-active { background: var(--gold); border-color: var(--gold); color: #fff; transform: scale(0.97); }
+  .answer-btn.no-active { background: var(--text-soft); border-color: var(--text-soft); color: #fff; transform: scale(0.97); }
+
+  /* ── RESULT ── */
+  .score-circle {
+    width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 4px;
+  }
+  .score-num { font-size: 1.8rem; font-weight: 400; color: var(--gold); line-height: 1; }
+  .score-label { font-family: var(--sans); font-size: 0.7rem; color: var(--text-light); font-weight: 300; }
+  .score-note { font-family: var(--sans); font-size: 0.7rem; color: var(--text-light); font-weight: 300; margin: 8px 0 24px; }
+
+  .type-card {
+    width: 100%; max-width: 420px; border-radius: 14px; border: 1px solid;
+    overflow: hidden; text-align: left; position: relative; margin-bottom: 16px;
+  }
+  .type-accent { position: absolute; left: 0; top: 8px; bottom: 8px; width: 4px; border-radius: 2px; }
+  .type-content { padding: 20px 20px 20px 16px; }
+  .type-badge {
+    display: inline-block; color: #fff; font-family: var(--sans); font-size: 0.72rem;
+    font-weight: 500; padding: 3px 14px; border-radius: 20px; margin-bottom: 8px;
+  }
+  .type-name { font-size: 1.2rem; font-weight: 500; margin-bottom: 8px; }
+  .type-desc { font-family: var(--sans); font-size: 0.82rem; color: var(--text-soft); line-height: 1.8; font-weight: 300; margin-bottom: 14px; }
+  .advice-box { background: rgba(255,255,255,0.6); border-radius: 8px; padding: 12px 14px; }
+  .advice-label { font-family: var(--sans); font-size: 0.8rem; font-weight: 500; margin-bottom: 6px; }
+  .advice-text { font-family: var(--sans); font-size: 0.78rem; color: var(--text); line-height: 1.8; font-weight: 300; }
+
+  .all-types { display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 420px; margin-bottom: 28px; }
+  .mini-type {
+    display: flex; align-items: center; gap: 8px; padding: 8px 14px;
+    border-radius: 8px; border: 1px solid #E0D8CC; transition: all 0.3s;
+  }
+  .mini-type.active { opacity: 1; }
+  .mini-type.inactive { opacity: 0.45; }
+  .mini-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .mini-label { font-family: var(--sans); font-size: 0.7rem; color: var(--text-light); font-weight: 300; min-width: 60px; }
+  .mini-name { font-family: var(--sans); font-size: 0.78rem; color: var(--text); font-weight: 400; }
+
+  .cta-box {
+    width: 100%; max-width: 420px; background: #fff; border-radius: 14px;
+    border: 1px solid var(--gold); padding: 24px 20px; text-align: center; margin-bottom: 20px;
+  }
+  .cta-title { font-size: 0.95rem; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+  .cta-desc { font-family: var(--sans); font-size: 0.78rem; color: var(--text-soft); line-height: 1.8; font-weight: 300; margin-bottom: 16px; }
+  .line-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green); color: #fff; border: none; border-radius: 50px;
+    padding: 12px 28px; font-size: 0.88rem; font-family: var(--sans); font-weight: 500;
+    cursor: pointer; text-decoration: none; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 4px 16px rgba(6,199,85,0.2);
+  }
+  .line-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(6,199,85,0.3); }
+  .line-btn svg { width: 20px; height: 20px; }
+
+  .restart-btn {
+    background: transparent; border: 1px solid var(--gold-light); border-radius: 50px;
+    padding: 10px 28px; font-size: 0.8rem; color: var(--text-soft);
+    font-family: var(--sans); font-weight: 300; cursor: pointer; transition: all 0.2s;
+  }
+  .restart-btn:hover { background: var(--bg-warm); }
+
+  /* ── Share buttons ── */
+  .share-section { margin-top: 20px; width: 100%; max-width: 420px; }
+  .share-label { font-family: var(--sans); font-size: 0.72rem; color: var(--text-light); font-weight: 300; margin-bottom: 10px; }
+  .share-row { display: flex; gap: 10px; justify-content: center; }
+  .share-btn {
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E0D8CC;
+    background: #fff; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .share-btn:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .share-btn svg { width: 18px; height: 18px; }
+
+  /* ── Back to site link ── */
+  .back-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: var(--sans); font-size: 0.72rem; color: var(--text-light);
+    text-decoration: none; margin-top: 16px; transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--gold); }
+
+  @media (max-width: 380px) {
+    .screen { padding: 36px 16px 32px; }
+    .answer-row { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- ════ INTRO ════ -->
+  <div class="screen" id="intro-screen">
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="brand">K I M &ensp; S H I F T</p>
+    <p class="brand-sub">Mindset</p>
+    <div class="gold-line"></div>
+    <h1 class="intro-title">セルフイメージ診断</h1>
+    <p class="intro-sub">あなたの「自分の扱い方」を知る</p>
+    <p class="intro-sub intro-accent">── 10の質問 ──</p>
+
+    <div class="desc-box">
+      <p>頑張ってきたのに、心とお金が報われていないと感じる──
+        それは努力が足りないからではありません。</p>
+      <p>無意識に染みついた「自分の扱い方」が、
+        お金・人間関係・チャンスの受け取り方を
+        毎日少しずつ決めています。</p>
+    </div>
+
+    <button class="start-btn" onclick="startQuiz()">診断をはじめる</button>
+    <p class="note">所要時間：約1分 ・ 全10問</p>
+  </div>
+
+  <!-- ════ QUESTION ════ -->
+  <div class="screen hidden" id="question-screen">
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <p class="progress-text" id="progress-text"></p>
+    </div>
+    <div class="q-num"><span id="q-num-text"></span></div>
+    <h2 class="q-text" id="q-text"></h2>
+    <div class="answer-row">
+      <button class="answer-btn" id="btn-yes" onclick="answer(true)">
+        <span class="icon">○</span><span>はい</span>
+      </button>
+      <button class="answer-btn" id="btn-no" onclick="answer(false)">
+        <span class="icon">×</span><span>いいえ</span>
+      </button>
+    </div>
+    <p class="note" style="margin-top:24px">直感で答えてください</p>
+  </div>
+
+  <!-- ════ RESULT ════ -->
+  <div class="screen hidden" id="result-screen">
+    <p class="brand">K I M &ensp; S H I F T</p>
+    <div class="gold-line"></div>
+    <p class="intro-sub" style="margin-bottom:8px">あなたの診断結果</p>
+
+    <div class="score-circle">
+      <span class="score-num" id="score-num"></span>
+      <span class="score-label">/ 10</span>
+    </div>
+    <p class="score-note">「はい」の数</p>
+
+    <div class="type-card" id="type-card">
+      <div class="type-accent" id="type-accent"></div>
+      <div class="type-content">
+        <span class="type-badge" id="type-badge"></span>
+        <h3 class="type-name" id="type-name"></h3>
+        <p class="type-desc" id="type-desc"></p>
+        <div class="advice-box">
+          <p class="advice-label" id="advice-label"></p>
+          <p class="advice-text" id="advice-text"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="all-types" id="all-types"></div>
+
+    <div class="cta-box">
+      <p class="cta-title">もっと深いワークを受け取りませんか？</p>
+      <p class="cta-desc">公式LINEでは限定コンテンツ・動画の続編・<br>現実をやさしく動かす配信をお届けしています。</p>
+      <a class="line-btn" href="https://lin.ee/pRkH8A7" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        公式LINEに登録する（無料）
+      </a>
+      <p class="note" style="margin-top:8px">登録は無料です。いつでも解除できます。</p>
+    </div>
+
+    <!-- Share -->
+    <div class="share-section">
+      <p class="share-label">この診断をシェアする</p>
+      <div class="share-row">
+        <!-- LINE share -->
+        <a class="share-btn" id="share-line" target="_blank" rel="noopener noreferrer" title="LINEでシェア">
+          <svg viewBox="0 0 24 24" fill="#06C755"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        </a>
+        <!-- X/Twitter share -->
+        <a class="share-btn" id="share-x" target="_blank" rel="noopener noreferrer" title="Xでシェア">
+          <svg viewBox="0 0 24 24" fill="#3A3530"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <!-- Copy link -->
+        <button class="share-btn" onclick="copyLink()" title="リンクをコピー">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3A3530" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <button class="restart-btn" onclick="restart()" style="margin-top:24px">もう一度診断する</button>
+
+    <a class="back-link" href="https://kimshift-mindset.manus.space/">← KIM SHIFT Mindset に戻る</a>
+
+    <p class="note" style="margin-top:16px; font-size:0.65rem">© 2026 KIM SHIFT Mindset</p>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  "褒められると「そんなことないです」が先に出る",
+  "自分へのご褒美に罪悪感を感じる",
+  "「私ばかり損している」と思うことがある",
+  "値段の高いものを選ぶとき、自分には贅沢だと思う",
+  "人に頼みごとをするのが苦手だ",
+  "うまくいっても「たまたま」だと感じる",
+  "誰かに嫌われていないか頻繁に気になる",
+  "「もっと頑張らないと」が口癖になっている",
+  "自分より他人の気持ちを優先することが多い",
+  "お金が入ってきても「すぐなくなる」と不安になる",
+];
+
+const TYPES = [
+  { range:[0,3], label:"0〜3個", name:"受け取り上手タイプ", color:"#1D9E75", bg:"#E1F5EE", border:"#9FE1CB",
+    desc:"自分を大切にする土台ができています。「受け取る力」がすでに育っている状態です。",
+    advice:"循環のワーク", detail:"受け取ったものを周りにシェアすることで、さらに大きな豊かさの流れがやってきます。感謝を言葉にして伝える習慣から始めてみましょう。" },
+  { range:[4,7], label:"4〜7個", name:"がんばり屋タイプ", color:"#C4A265", bg:"#F5EFE2", border:"#DCC9A0",
+    desc:"努力で補おうとする癖が、無意識に「受け取り」をブロックしています。頑張ることが当たり前になりすぎて、自分を労わることを忘れがちです。",
+    advice:"気づきのジャーナリング", detail:"「今日、自分を雑に扱った場面」を毎晩3分だけノートに書いてみてください。気づくだけで、変化は静かに始まります。" },
+  { range:[8,10], label:"8〜10個", name:"自己犠牲タイプ", color:"#D85A30", bg:"#FAECE7", border:"#F0C0AB",
+    desc:"自分の価値を低く見積もる習慣が深く根づいています。でも大丈夫。その気づき自体が、シフトの第一歩です。",
+    advice:"3分ジャーナリング", detail:"毎晩ノートに「今日、私が本当に望んだこと」をひとつだけ書きましょう。小さな望みを認めることが、静かなシフトの入口になります。" },
+];
+
+let currentQ = 0;
+let yesCount = 0;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => { s.classList.add('hidden'); s.classList.remove('visible'); });
+  const el = document.getElementById(id);
+  el.classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('visible')));
+}
+
+function startQuiz() {
+  currentQ = 0;
+  yesCount = 0;
+  renderQuestion();
+  showScreen('question-screen');
+}
+
+function renderQuestion() {
+  document.getElementById('progress-fill').style.width = ((currentQ) / QUESTIONS.length * 100) + '%';
+  document.getElementById('progress-text').textContent = (currentQ + 1) + ' / ' + QUESTIONS.length;
+  document.getElementById('q-num-text').textContent = currentQ + 1;
+  document.getElementById('q-text').textContent = QUESTIONS[currentQ];
+  document.getElementById('btn-yes').className = 'answer-btn';
+  document.getElementById('btn-no').className = 'answer-btn';
+}
+
+function answer(isYes) {
+  if (isYes) {
+    yesCount++;
+    document.getElementById('btn-yes').classList.add('yes-active');
+  } else {
+    document.getElementById('btn-no').classList.add('no-active');
+  }
+
+  setTimeout(() => {
+    if (currentQ < QUESTIONS.length - 1) {
+      currentQ++;
+      // Fade out then in
+      const screen = document.getElementById('question-screen');
+      screen.classList.remove('visible');
+      setTimeout(() => {
+        renderQuestion();
+        screen.classList.add('visible');
+      }, 250);
+    } else {
+      showResult();
+    }
+  }, 350);
+}
+
+function getType(count) {
+  return TYPES.find(t => count >= t.range[0] && count <= t.range[1]);
+}
+
+function showResult() {
+  const type = getType(yesCount);
+
+  document.getElementById('score-num').textContent = yesCount;
+
+  const card = document.getElementById('type-card');
+  card.style.background = type.bg;
+  card.style.borderColor = type.border;
+  document.getElementById('type-accent').style.background = type.color;
+  document.getElementById('type-badge').style.background = type.color;
+  document.getElementById('type-badge').textContent = type.label;
+  document.getElementById('type-name').style.color = type.color;
+  document.getElementById('type-name').textContent = type.name;
+  document.getElementById('type-desc').textContent = type.desc;
+  document.getElementById('advice-label').style.color = type.color;
+  document.getElementById('advice-label').textContent = '▶ おすすめ：' + type.advice;
+  document.getElementById('advice-text').textContent = type.detail;
+
+  // Mini types
+  const container = document.getElementById('all-types');
+  container.innerHTML = '';
+  TYPES.forEach(t => {
+    const isActive = yesCount >= t.range[0] && yesCount <= t.range[1];
+    const div = document.createElement('div');
+    div.className = 'mini-type ' + (isActive ? 'active' : 'inactive');
+    if (isActive) { div.style.background = t.bg; div.style.borderColor = t.border; }
+    div.innerHTML = `<span class="mini-dot" style="background:${t.color}"></span>
+      <span class="mini-label">${t.label}</span>
+      <span class="mini-name">${t.name}</span>`;
+    container.appendChild(div);
+  });
+
+  // Share links
+  const pageUrl = encodeURIComponent(window.location.href);
+  const shareText = encodeURIComponent('セルフイメージ診断をやってみたら「' + type.name + '」でした。あなたも試してみて✦');
+  document.getElementById('share-line').href = 'https://line.me/R/share?text=' + shareText + '%0A' + pageUrl;
+  document.getElementById('share-x').href = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + pageUrl;
+
+  showScreen('result-screen');
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = event.currentTarget;
+    btn.style.borderColor = '#1D9E75';
+    btn.style.background = '#E1F5EE';
+    setTimeout(() => { btn.style.borderColor = '#E0D8CC'; btn.style.background = '#fff'; }, 1500);
+  });
+}
+
+function restart() {
+  currentQ = 0;
+  yesCount = 0;
+  showScreen('intro-screen');
+}
+
+// Init
+window.addEventListener('DOMContentLoaded', () => {
+  showScreen('intro-screen');
+});
+</script>
+
+</body>
+</html>
